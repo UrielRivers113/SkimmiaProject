@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <br>
+    <h1 align=center>¿Estás aburrido? <strong>Escucha un poco de música</strong> </h1>
+    <hr>
+
+
+    <div class="row">
+        <div class="col">
+            <!--Capturar referencia local #-->
+            <input #termino type="text" (keyup)="buscar(termino.value)" class="form-control" placeholder="Buscar artista">
+        </div>
+    </div>
+
+
+    <div class="card-columns m-5">
+        <div (click)="verArtista(artista)" *ngFor="let artista of artistas" class="card puntero" style="max-width: 18rem;">
+            <img class="card-img-top" [src]="artista.images | noimage ">
+            <div class="card-body">
+                <h5 class="card-title">{{artista.name}}</h5>
+            </div>
+        </div>
+    </div>
+
+
+</div>
