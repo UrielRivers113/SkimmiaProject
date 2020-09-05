@@ -1,15 +1,17 @@
 <div class="login-register" style="background-image:url(../assets/images/background/chidita.jpg);">
     <div class="login-box card" style="border-radius: 20px; opacity: 0.9;">
         <div class="card-body">
-            <form class="form-horizontal form-material" id="loginform" (ngSubmit)="ingresar()">
+            <form class="form-horizontal form-material" id="loginform" (ngSubmit)="ingresar(forma)" #forma="ngForm" method="post">
                 <h3 class="box-title m-b-20">Ingresar</h3>
                 <div class="form-group ">
                     <div class="col-xs-12">
-                        <input class="form-control" [(ngModel)]="correo" name="correo" autofocus type="email" required="" placeholder="Correo"> </div>
+                        <input type="email" class="form-control" [class.is-invalid]="(email.invalid && email.touched)" #email="ngModel" name="email" ngModel pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required="" placeholder="Correo"> </div>
+                    <small *ngIf="email.invalid && email.touched" class="form-text text-danger">Llena el campo</small>
                 </div>
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <input class="form-control" [(ngModel)]="pwd" name="pwd" autofocus type="password" required="" placeholder="Contraseña"> </div>
+                        <input type="password" class="form-control" [class.is-invalid]="(pwd.invalid && pwd.touched)" #pwd="ngModel" name="pwd" ngModel required="" placeholder="Contraseña"> </div>
+                    <small *ngIf="pwd.invalid && pwd.touched" class="form-text text-danger">Llena el campo</small>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
@@ -20,7 +22,7 @@
                 </div>
                 <div class="form-group text-center">
                     <div class="col-xs-12 p-b-20">
-                        <button [disabled]="correo.trim().length === 0 && pwd.trim().length === 0" class="btn btn-block btn-lg btn-info btn-rounded" type="submit">I n g r e s a r</button>
+                        <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">I n g r e s a r</button>
                     </div>
                 </div>
                 <div class="row">
